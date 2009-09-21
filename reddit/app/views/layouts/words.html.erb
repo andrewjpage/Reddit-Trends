@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>
+			<%= controller.action_name %>
+		</title><%= stylesheet_link_tag 'style' %><%= javascript_include_tag 'jquery' %><%= javascript_include_tag 'form' %><%= javascript_include_tag 'excanvas.pack' %><%= javascript_include_tag 'jquery.flot' %>
+	</head>
+	<body>
+		<p style="color: green">
+			<%= flash[:notice] %>
+		</p>
+		<div id="container">
+			<div id="header">
+				<h1>
+					<a href="http://www.reddittrends.com">RoR RoR RoR Trends</a>
+				</h1>
+				<h2>
+					like google trends except for reddit submissions
+				</h2><br />
+				<hr />
+			</div>
+			<div id="main">
+				<%= yield %>
+				<% form_for(@wordtag, :url => { :action =>"create" }) do |t| %>
+					<%= t.error_messages %>
+				<p>
+					<%= t.text_field :word %> 
+					<%= t.submit 'Search Tags' %>
+				</p>
+				<% end %>
+				<div id="placeholder"></div>
+				<div align="center" style="width: 600px; color: black;">
+					Number of times <em><%=h @wordtag.word %></em> appears in Reddit submissions
+				</div><script id="source" language="javascript" type="text/javascript">
+//<![CDATA[
+										$(function () {
+
+				var d2= <%=h @plot.graph %>
+												$.plot($("#placeholder"), [
+												{
+														data: d2
+												}
+												],{ xaxis: { mode: "time" } });
+										});
+				//]]>
+				</script>
+				<div id="tagcloud">
+					<h2>
+						Most popular all time
+					</h2>
+					<ul>
+						<% @words.each do |word| %>
+						<li>
+							<%= link_to word.word, words_path(:id => word.word) %>
+						</li><% end %>
+					</ul>
+				</div>
+				<div id="tagcloud">
+					<h2>
+						Most popular for last week
+					</h2>
+					<ul>
+						<% @wordsfreq.each do |word| %>
+						<li>
+							<%= link_to word.word,  words_path(word.word) %>
+						</li><% end %>
+					</ul>
+				</div>
+			</div>
+			<div id="footer">
+				<hr />
+				<p class="left">
+					<a href="http://www.andrewjpage.com/">Andrew J. Page</a> - <a href="http://predictreddit.com">PredictReddit</a>
+				</p>
+				<p class="right">
+					<a href="http://andrewjpage.com/index.php?/archives/117-Predicting-votes-on-Reddit-PredictReddit.com.html">More Info</a>
+				</p>
+				<p>
+					&nbsp;
+				</p>
+			</div>
+		</div>
+	</body>
+</html>

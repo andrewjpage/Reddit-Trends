@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  cid: 1
+  wid: 
+  updatetime: 1
+  graph: MyText
+  timeperiod: MyString
+
+two:
+  cid: 1
+  wid: 
+  updatetime: 1
+  graph: MyText
+  timeperiod: MyString

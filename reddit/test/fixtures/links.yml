@@ -1,0 +1,21 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  fid: 
+  title: MyString
+  score: 1
+  num_comments: 1
+  ups: 1
+  created: 1
+  downs: 1
+  name: MyString
+
+two:
+  fid: 
+  title: MyString
+  score: 1
+  num_comments: 1
+  ups: 1
+  created: 1
+  downs: 1
+  name: MyString
